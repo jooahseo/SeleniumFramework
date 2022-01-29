@@ -4,24 +4,16 @@ import org.testng.annotations.Test;
 import pageObject.Homepage;
 import pageObject.LoginPage;
 
-import java.io.IOException;
-
-public class HomepageTest extends Base{
+public class HomepageTest extends TestBase{
 
     @Test(dataProvider = "loginData")
-    public void testInvalidLogin(String username, String password) throws IOException, InterruptedException {
-        driver = initializeDriver();
-        driver.get(prop.getProperty("url"));
-
+    public void testInvalidLogin(String username, String password){
         Homepage home = new Homepage(driver);
         home.clickLogin();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
         Assert.assertTrue(loginPage.errorMessageExist("Invalid email or password."));
-
-        Thread.sleep(3000);
-        driver.quit();
     }
 
     @DataProvider(name = "loginData")
