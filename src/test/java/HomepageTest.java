@@ -11,7 +11,7 @@ public class HomepageTest extends Base{
     @Test(dataProvider = "loginData")
     public void testInvalidLogin(String username, String password) throws IOException, InterruptedException {
         driver = initializeDriver();
-        driver.get("https://qaclickacademy.com/");
+        driver.get(prop.getProperty("url"));
 
         Homepage home = new Homepage(driver);
         home.clickLogin();

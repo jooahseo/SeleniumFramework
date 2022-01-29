@@ -8,9 +8,10 @@ import java.util.Properties;
 public class Base {
 
     public WebDriver driver;
+    public Properties prop;
 
     public WebDriver initializeDriver() throws IOException {
-        Properties prop = new Properties();
+        prop = new Properties();
         FileInputStream fis = new FileInputStream("/Users/jooahseo/Google Drive (seo.jooah@gmail.com)/Coding Bootcamp/Java/SeleniumFramework/src/main/java/resources/data.properties");
 
         prop.load(fis);
