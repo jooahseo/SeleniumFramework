@@ -8,7 +8,7 @@ import java.io.IOException;
 public class HomepageTest extends Base{
 
     @Test
-    public void HomeNavigation() throws IOException, InterruptedException {
+    public void testInvalidLogin() throws IOException, InterruptedException {
         driver = initializeDriver();
         driver.get("https://qaclickacademy.com/");
 
