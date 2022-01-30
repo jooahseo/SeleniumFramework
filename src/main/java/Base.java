@@ -12,7 +12,7 @@ public class Base {
 
     public WebDriver initializeDriver() throws IOException {
         prop = new Properties();
-        FileInputStream fis = new FileInputStream("/Users/jooahseo/Google Drive (seo.jooah@gmail.com)/Coding Bootcamp/Java/SeleniumFramework/src/main/java/resources/data.properties");
+        FileInputStream fis = new FileInputStream("/Users/jooahseo/Google Drive (seo.jooah@gmail.com)/Coding Bootcamp/Java/SeleniumFramework/src/main/resources/data.properties");
 
         prop.load(fis);
         String browser = prop.getProperty("browser");
