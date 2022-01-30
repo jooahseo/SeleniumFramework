@@ -48,6 +48,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+<!--                Point to the resources file for Log4j2.xml file-->
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
