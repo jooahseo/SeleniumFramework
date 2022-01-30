@@ -9,9 +9,11 @@ public class HomepageTest extends TestBase{
     @Test(dataProvider = "loginData")
     public void testInvalidLogin(String username, String password){
         Homepage home = new Homepage(driver);
+        log.info("Go to login page");
         home.clickLogin();
 
         LoginPage loginPage = new LoginPage(driver);
+        log.info("try login with invalid credentials");
         loginPage.login(username, password);
         Assert.assertTrue(loginPage.errorMessageExist("Invalid email or password."));
     }
