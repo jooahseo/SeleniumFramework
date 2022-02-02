@@ -18,6 +18,12 @@ public class HomepageTest extends TestBase{
         Assert.assertTrue(loginPage.errorMessageExist("Invalid email or password."));
     }
 
+    @Test
+    public void testFailure(){
+        //screenshot will be saved for this failing test
+        Assert.fail();
+    }
+
     @DataProvider(name = "loginData")
     public Object[][] getLoginData(){
         //row stands for how many different data types test should run
