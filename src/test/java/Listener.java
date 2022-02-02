@@ -11,20 +11,25 @@ import java.io.IOException;
 public class Listener extends Base implements ITestListener {
     ExtentReports extent = ExtentReporter.getReport();
     ExtentTest test;
+    //for a thread safe test report on parallel execution
+    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
+        //add test object to the thread pool
+        extentTest.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.log(Status.PASS, "Test Passed");
+        //extentTest.get() => ThreadLocal will check the pool and give the valid test object
+        extentTest.get().log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        test.fail(result.getThrowable());
+        extentTest.get().fail(result.getThrowable());
         //capture failed test name
         String testCaseName = result.getMethod().getMethodName();
         WebDriver driver = null;
