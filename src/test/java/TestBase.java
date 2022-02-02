@@ -10,7 +10,7 @@ public class TestBase extends Base{
 
     @BeforeMethod
     public void getStarted() throws IOException {
-        driver = initializeDriver();
+        driver = getDriver();
         driver.get(prop.getProperty("url"));
         log.info("Navigate to: " + prop.getProperty("url"));
     }
