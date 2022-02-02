@@ -1,3 +1,6 @@
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -6,18 +9,22 @@ import org.testng.ITestResult;
 import java.io.IOException;
 
 public class Listener extends Base implements ITestListener {
+    ExtentReports extent = ExtentReporter.getReport();
+    ExtentTest test;
+
     @Override
     public void onTestStart(ITestResult result) {
-        ITestListener.super.onTestStart(result);
+        test = extent.createTest(result.getMethod().getMethodName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ITestListener.super.onTestSuccess(result);
+        test.log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
+        test.fail(result.getThrowable());
         //capture failed test name
         String testCaseName = result.getMethod().getMethodName();
         WebDriver driver = null;
@@ -57,6 +64,6 @@ public class Listener extends Base implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-        ITestListener.super.onFinish(context);
+        extent.flush();
     }
 }
